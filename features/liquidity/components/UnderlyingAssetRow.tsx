@@ -40,7 +40,7 @@ export const UnderlyingAssetRow = ({
       justifyContent="space-between"
       css={{ visibility: visible ? 'visible' : 'hidden' }}
     >
-      <Inline gap={3}>
+      <Inline gap={3} style={{ marginRight: 5 }}>
         <ImageForTokenLogo
           size="large"
           logoURI={token?.logoURI}
