@@ -12,7 +12,7 @@ const links = [
   },
   {
     id: 'transfer',
-    label: 'Transfer',
+    label: 'IBC Transfer',
     href: '/transfer',
     icon: <ArrowUp />,
   },
@@ -20,6 +20,36 @@ const links = [
     id: 'pools',
     label: 'Liquidity Pools',
     href: '/pools',
+    icon: <Open />,
+  },
+  {
+    id: 'bridgeRango',
+    label: 'Bridge / Rango',
+    href: '#',
+    icon: <Open />,
+  },
+  {
+    id: 'marketplace',
+    label: 'Source Marketplace',
+    href: '#',
+    icon: <Open />,
+  },
+  {
+    id: 'stats',
+    label: 'Stats',
+    href: '#',
+    icon: <Open />,
+  },
+  {
+    id: 'stake',
+    label: 'Stake',
+    href: '#',
+    icon: <Open />,
+  },
+  {
+    id: 'vote',
+    label: 'Vote',
+    href: '#',
     icon: <Open />,
   },
 ]

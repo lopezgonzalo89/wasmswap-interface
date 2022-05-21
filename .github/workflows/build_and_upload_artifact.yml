@@ -30,11 +30,10 @@ env:
 
   # Contact Information
   NEXT_PUBLIC_FEEDBACK_LINK: '#'
-  NEXT_PUBLIC_INTERFACE_GITHUB_LINK: https://github.com/Wasmswap/wasmswap-interface
-  NEXT_PUBLIC_CONTRACTS_GITHUB_LINK: https://github.com/ben2x4/crustacean-swap
-  NEXT_PUBLIC_TELEGRAM_LINK: '#'
-  NEXT_PUBLIC_DISCORD_LINK: '#'
-  NEXT_PUBLIC_TWITTER_LINK: '#'
+  NEXT_PUBLIC_INTERFACE_GITHUB_LINK: https://github.com/Source-Protocol-Cosmos/
+  NEXT_PUBLIC_TELEGRAM_LINK: https://t.me/SourceProtocol
+  NEXT_PUBLIC_DISCORD_LINK: https://discord.com/invite/zj8xxUCeZQ
+  NEXT_PUBLIC_TWITTER_LINK: https://twitter.com/SourceProtocol_
 
 jobs:
   build:
