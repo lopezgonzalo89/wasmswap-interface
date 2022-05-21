@@ -1,4 +1,6 @@
-import { media, styled, useMedia } from 'junoblocks'
+import { media, styled, useControlTheme, useMedia } from 'junoblocks'
+import lightBackground from 'public/img/sourceswap-bg-day.svg'
+import nightBackground from 'public/img/sourceswap-bg-night.svg'
 import { APP_MAX_WIDTH } from 'util/constants'
 
 import { ExtensionSidebar } from './ExtensionSidebar'
@@ -11,12 +13,13 @@ export const AppLayout = ({
   footerBar = <FooterBar />,
   children,
 }) => {
+  const themeController = useControlTheme()
   const isSmallScreen = useMedia('sm')
   const isMediumScreen = useMedia('md')
 
   if (isSmallScreen) {
     return (
-      <StyledWrapperForMobile>
+      <StyledWrapperForMobile theme={themeController.theme.name}>
         <StyledContainerForMobile>
           {navigationSidebar}
 
@@ -31,7 +34,7 @@ export const AppLayout = ({
   }
 
   return (
-    <StyledWrapper>
+    <StyledWrapper theme={themeController.theme.name}>
       {navigationSidebar}
 
       <StyledContainer>
@@ -47,11 +50,21 @@ const StyledWrapper = styled('div', {
   display: 'grid',
   minHeight: '100vh',
   gridTemplateColumns: '16.5rem 1fr 16.5rem',
-  backgroundColor: '$backgroundColors$base',
   maxWidth: APP_MAX_WIDTH,
   margin: '0 auto',
   [media.md]: {
     gridTemplateColumns: '15rem 1fr',
+  },
+  backgroundPosition: 'right bottom',
+  variants: {
+    theme: {
+      dark: {
+        backgroundImage: `url(${nightBackground.src})`,
+      },
+      light: {
+        backgroundImage: `url(${lightBackground.src})`,
+      },
+    },
   },
 })
 
@@ -77,7 +90,17 @@ const StyledWrapperForMobile = styled('div', {
   flexDirection: 'column',
   justifyContent: 'space-between',
   minHeight: '100vh',
-  backgroundColor: '$backgroundColors$base',
+  backgroundPosition: 'right bottom',
+  variants: {
+    theme: {
+      dark: {
+        backgroundImage: `url(${nightBackground.src})`,
+      },
+      light: {
+        backgroundImage: `url(${lightBackground.src})`,
+      },
+    },
+  },
 })
 
 const StyledContainerForMobile = styled('div', {

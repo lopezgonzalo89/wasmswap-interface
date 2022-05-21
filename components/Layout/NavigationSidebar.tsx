@@ -315,6 +315,7 @@ const StyledWrapper = styled('div', {
   justifyContent: 'space-between',
   padding: '0 $8',
   backgroundColor: '$backgroundColors$base',
+  opacity: 0.7,
   overflow: 'auto',
   borderRight: '1px solid $borderColors$inactive',
   position: 'sticky',
@@ -333,6 +334,7 @@ const StyledWrapperForMobile = styled('div', {
   top: 0,
   padding: '$10 $12',
   backgroundColor: '$backgroundColors$base',
+  opacity: 0.7,
   zIndex: '$3',
 })
 
