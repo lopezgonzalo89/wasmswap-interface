@@ -1,9 +1,8 @@
+import MenuLinks from 'components/MenuLinks/MenuLinks'
 import { useConnectWallet } from 'hooks/useConnectWallet'
 import { useVersion } from 'hooks/useVersion'
 import { Logo } from 'icons'
 import {
-  AddressIcon,
-  ArrowUpIcon,
   Button,
   ChevronIcon,
   Column,
@@ -15,7 +14,6 @@ import {
   Inline,
   media,
   MoonIcon,
-  Open,
   styled,
   Telegram,
   Text,
@@ -28,7 +26,6 @@ import {
   useMedia,
 } from 'junoblocks'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React, { ReactNode, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { walletState, WalletStatusType } from 'state/atoms/walletAtoms'
@@ -72,47 +69,6 @@ export function NavigationSidebar({
     />
   )
 
-  const { pathname } = useRouter()
-  const getIsLinkActive = (path) => pathname === path
-
-  const menuLinks = (
-    <StyledListForLinks>
-      <Link href="/" passHref>
-        <Button
-          as="a"
-          variant="menu"
-          size="large"
-          iconLeft={<AddressIcon />}
-          selected={getIsLinkActive('/')}
-        >
-          Swap
-        </Button>
-      </Link>
-      <Link href="/transfer" passHref>
-        <Button
-          as="a"
-          variant="menu"
-          size="large"
-          iconLeft={<ArrowUpIcon />}
-          selected={getIsLinkActive('/transfer')}
-        >
-          Transfer
-        </Button>
-      </Link>
-      <Link href="/pools" passHref>
-        <Button
-          as="a"
-          variant="menu"
-          size="large"
-          iconLeft={<IconWrapper icon={<Open />} />}
-          selected={getIsLinkActive('/pools')}
-        >
-          Liquidity
-        </Button>
-      </Link>
-    </StyledListForLinks>
-  )
-
   if (isMobile) {
     const triggerMenuButton = isOpen ? (
       <Button
@@ -154,7 +110,7 @@ export function NavigationSidebar({
             {isOpen && (
               <Column css={{ paddingTop: '$12' }}>
                 {walletButton}
-                {menuLinks}
+                <MenuLinks />
               </Column>
             )}
           </StyledWrapperForMobile>
@@ -176,7 +132,7 @@ export function NavigationSidebar({
         {isOpen && (
           <Column css={{ paddingTop: '$12' }}>
             {walletButton}
-            {menuLinks}
+            <MenuLinks />
           </Column>
         )}
       </StyledWrapperForMobile>
@@ -193,7 +149,7 @@ export function NavigationSidebar({
         </Link>
 
         {walletButton}
-        {menuLinks}
+        <MenuLinks />
       </StyledMenuContainer>
       <div>
         <Text variant="legend" css={{ padding: '$4 $3' }}>
@@ -329,12 +285,6 @@ const StyledMenuContainer = styled('div', {
   position: 'relative',
   zIndex: '$2',
   padding: '$10 0',
-})
-
-const StyledListForLinks = styled('div', {
-  display: 'flex',
-  rowGap: '$space$2',
-  flexDirection: 'column',
 })
 
 const StyledDivForLogo = styled('div', {
