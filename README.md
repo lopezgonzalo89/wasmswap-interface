@@ -106,8 +106,6 @@ NEXT_PUBLIC_APP_VERSION=1.0.0
 
 We rcommend vector graphics for your project's logo and name. Go to `/icons/Logo.tsx` and swap our branded logo symbol with yours to update the app logo.
 
-Go to `/icons/LogoText.tsx` and update the file accordingly to update the logo text.
-
 ### Color palette
 
 To update the color palette, go to `components/theme.ts` and provide your custom values.

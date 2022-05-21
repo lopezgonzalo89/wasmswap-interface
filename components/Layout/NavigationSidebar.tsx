@@ -1,6 +1,6 @@
 import { useConnectWallet } from 'hooks/useConnectWallet'
 import { useVersion } from 'hooks/useVersion'
-import { Logo, LogoText } from 'icons'
+import { Logo } from 'icons'
 import {
   AddressIcon,
   ArrowUpIcon,
@@ -32,7 +32,7 @@ import { useRouter } from 'next/router'
 import React, { ReactNode, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { walletState, WalletStatusType } from 'state/atoms/walletAtoms'
-import { __TEST_MODE__, APP_NAME } from 'util/constants'
+import { APP_NAME } from 'util/constants'
 
 import { ConnectedWalletButton } from '../ConnectedWalletButton'
 
@@ -144,7 +144,7 @@ export function NavigationSidebar({
                   align="center"
                   as="a"
                 >
-                  <Logo data-logo="" width="37px" height="47px" />
+                  <Logo width="37px" height="47px" />
                 </Column>
               </Link>
               <Column align="flex-end" css={{ flex: 0.3 }}>
@@ -168,17 +168,7 @@ export function NavigationSidebar({
         <Inline align="center" justifyContent="space-between">
           <Link href="/" passHref>
             <StyledDivForLogo as="a">
-              <Logo data-logo="" width="37px" height="47px" />
-              <div data-logo-label="">
-                <Text
-                  variant="caption"
-                  color="error"
-                  css={{ padding: '0 0 $1 0' }}
-                >
-                  {__TEST_MODE__ ? 'Testnet' : 'Beta'}
-                </Text>
-                <LogoText />
-              </div>
+              <Logo width="37px" height="47px" />
             </StyledDivForLogo>
           </Link>
           {triggerMenuButton}
@@ -198,17 +188,7 @@ export function NavigationSidebar({
       <StyledMenuContainer>
         <Link href="/" passHref>
           <StyledDivForLogo as="a">
-            <Logo data-logo="" width="37px" height="47px" />
-            <div data-logo-label="">
-              <Text
-                variant="caption"
-                color="error"
-                css={{ padding: '0 0 $1 0' }}
-              >
-                {__TEST_MODE__ ? 'Testnet' : 'Beta'}
-              </Text>
-              <LogoText />
-            </div>
+            <Logo />
           </StyledDivForLogo>
         </Link>
 
@@ -359,17 +339,9 @@ const StyledListForLinks = styled('div', {
 
 const StyledDivForLogo = styled('div', {
   display: 'grid',
-  gridTemplateColumns: '37px 1fr',
-  columnGap: '$space$4',
-  alignItems: 'center',
+  justifyItems: 'center',
+  paddingTop: '$4',
   paddingBottom: '$8',
-
-  '& [data-logo]': {
-    marginBottom: '$2',
-  },
-  '& svg': {
-    color: '$colors$black',
-  },
 
   [media.sm]: {
     paddingBottom: 0,
