@@ -3,19 +3,16 @@ import lightBackground from 'public/img/sourceswap-bg-day.svg'
 import nightBackground from 'public/img/sourceswap-bg-night.svg'
 import { APP_MAX_WIDTH } from 'util/constants'
 
-import { ExtensionSidebar } from './ExtensionSidebar'
 import { FooterBar } from './FooterBar'
 import { NavigationSidebar } from './NavigationSidebar'
 
 export const AppLayout = ({
   navigationSidebar = <NavigationSidebar />,
-  extensionSidebar = <ExtensionSidebar />,
   footerBar = <FooterBar />,
   children,
 }) => {
   const themeController = useControlTheme()
   const isSmallScreen = useMedia('sm')
-  const isMediumScreen = useMedia('md')
 
   if (isSmallScreen) {
     return (
@@ -40,8 +37,6 @@ export const AppLayout = ({
       <StyledContainer>
         <main>{children}</main>
       </StyledContainer>
-
-      {!isMediumScreen && extensionSidebar}
     </StyledWrapper>
   )
 }
