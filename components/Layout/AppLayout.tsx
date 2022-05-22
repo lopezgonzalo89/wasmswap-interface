@@ -44,7 +44,7 @@ export const AppLayout = ({
 const StyledWrapper = styled('div', {
   display: 'grid',
   minHeight: '100vh',
-  gridTemplateColumns: '16.5rem 1fr 16.5rem',
+  gridTemplateColumns: '16.5rem auto',
   maxWidth: APP_MAX_WIDTH,
   margin: '0 auto',
   [media.md]: {

@@ -1,9 +1,8 @@
-import { AppLayout, PageHeader } from 'components'
+import { AppLayout } from 'components'
+import MyAssets from 'components/MyAssets/MyAssets'
 import { TokenSwapModule } from 'features/swap'
 import { styled } from 'junoblocks'
 import React from 'react'
-
-import { APP_NAME } from '../util/constants'
 
 function getInitialTokenPairFromSearchParams() {
   const params = new URLSearchParams(location.search)
@@ -16,10 +15,7 @@ export default function Home() {
   return (
     <AppLayout>
       <StyledContainer>
-        <PageHeader
-          title="Swap"
-          subtitle={`Swap between your favorite assets on ${APP_NAME}.`}
-        />
+        <MyAssets />
         <TokenSwapModule
           initialTokenPair={getInitialTokenPairFromSearchParams()}
         />
