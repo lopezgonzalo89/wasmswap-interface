@@ -40,7 +40,9 @@ export const SelectorToggle = ({
     >
       {(isSelecting || !hasTokenSelected) && (
         <>
-          <Text variant="body">Select a token</Text>
+          <Text variant="body" style={{ paddingLeft: '40px' }}>
+            Select a token
+          </Text>
           <IconWrapper
             size="large"
             rotation={tokenSymbol ? '90deg' : '-90deg'}

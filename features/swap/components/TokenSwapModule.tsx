@@ -1,24 +1,33 @@
+import { useChainInfo } from 'hooks/useChainInfo'
 import { useTokenList } from 'hooks/useTokenList'
-import { styled, useMedia, usePersistance } from 'junoblocks'
+import {
+  styled,
+  Text,
+  useControlTheme,
+  useMedia,
+  usePersistance,
+} from 'junoblocks'
 import { useEffect, useRef } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   TransactionStatus,
   transactionStatusState,
 } from 'state/atoms/transactionAtoms'
+import { APP_NAME } from 'util/constants'
 
 import { useTokenToTokenPrice } from '../hooks'
 import { tokenSwapAtom } from '../swapAtoms'
 import { TokenSelector } from './TokenSelector'
 import { TransactionAction } from './TransactionAction'
 import { TransactionTips } from './TransactionTips'
-
 type TokenSwapModuleProps = {
   /* will be used if provided on first render instead of internal state */
   initialTokenPair?: readonly [string, string]
 }
 
 export const TokenSwapModule = ({ initialTokenPair }: TokenSwapModuleProps) => {
+  const { theme } = useControlTheme()
+
   /* connect to recoil */
   const [[tokenA, tokenB], setTokenSwapState] = useRecoilState(tokenSwapAtom)
   const transactionStatus = useRecoilValue(transactionStatusState)
@@ -86,8 +95,17 @@ export const TokenSwapModule = ({ initialTokenPair }: TokenSwapModuleProps) => {
     ])
   }
 
+  const [chainInfo] = useChainInfo()
+  const chainName = chainInfo?.chainName || APP_NAME
+
   return (
-    <>
+    <TokenSwapModuleContainer theme={theme.name}>
+      <Text variant="header" css={{ paddingTop: '$8' }}>
+        Trade
+      </Text>
+      <Text variant="body" css={{ padding: '$3 $8 $8 0px' }}>
+        {`Swap your favorite assets on ${chainName} blockchain.`}
+      </Text>
       <StyledDivForWrapper>
         <TokenSelector
           tokenSymbol={tokenA.tokenSymbol}
@@ -121,11 +139,27 @@ export const TokenSwapModule = ({ initialTokenPair }: TokenSwapModuleProps) => {
         tokenToTokenPrice={tokenPrice}
         size={uiSize}
       />
-    </>
+    </TokenSwapModuleContainer>
   )
 }
 
+const TokenSwapModuleContainer = styled('div', {
+  padding: '0px 20px',
+  borderRadius: '8px',
+  border: '1px solid #94cfe0',
+  variants: {
+    theme: {
+      dark: {
+        backgroundColor: 'rgb(1, 1, 1, 0.7)',
+      },
+      light: {
+        backgroundColor: 'rgb(255, 255, 255, 0.7)',
+      },
+    },
+  },
+})
+
 const StyledDivForWrapper = styled('div', {
   borderRadius: '8px',
-  backgroundColor: '$colors$dark10',
+  backgroundColor: '$colors$white',
 })

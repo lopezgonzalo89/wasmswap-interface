@@ -72,7 +72,7 @@ const MyAssetsContainer = styled('div', {
   height: 125,
   padding: 15,
   borderRadius: '8px',
-  border: '3px solid $colors$dark10',
+  border: '1px solid #94cfe0',
 })
 
 const Table = styled('div', {

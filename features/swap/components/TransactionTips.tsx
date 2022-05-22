@@ -78,7 +78,7 @@ export const TransactionTips = ({
       <Inline
         justifyContent="space-between"
         css={{
-          padding: isShowing ? '$10 $12 $10 $9' : '$11 $12 $11 $9',
+          padding: '$3 $15 $3 $30',
           borderTop: '1px solid $borderColors$inactive',
           borderBottom: '1px solid $borderColors$inactive',
         }}
@@ -116,7 +116,7 @@ export const TransactionTips = ({
 }
 
 const StyledDivForWrapper = styled('div', {
-  padding: '$8 $16 $8 $12',
+  padding: '$3 $15 $3 $30',
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   justifyContent: 'space-between',

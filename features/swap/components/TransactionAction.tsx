@@ -113,7 +113,7 @@ export const TransactionAction = ({
           <SlippageSelector
             slippage={slippage}
             onSlippageChange={setSlippage}
-            css={{ borderRadius: '$2 0 0 $2' }}
+            css={{ borderRadius: '$2' }}
           />
         </StyledDivColumnForInfo>
         <StyledDivColumnForInfo kind="fees">
@@ -145,10 +145,10 @@ const StyledDivForWrapper = styled('div', {
 })
 
 const StyledDivForInfo = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
+  display: 'grid',
+  gridTemplateColumns: 'auto auto',
+  justifyContent: 'right',
   textTransform: 'uppercase',
-  borderRadius: 8,
 })
 
 const StyledDivColumnForInfo = styled('div', {
@@ -156,16 +156,10 @@ const StyledDivColumnForInfo = styled('div', {
   variants: {
     kind: {
       slippage: {
-        backgroundColor: 'transparent',
         minWidth: '140px',
-        borderRadius: '$4 0 0 $4',
-        borderRight: '1px solid $borderColors$default',
       },
       fees: {
-        backgroundColor: '$colors$dark10',
-        flex: 1,
-        padding: '$space$8 $space$12',
-        borderRadius: '0 $2 $2 0',
+        padding: '$space$8 $space$12 0px 0px',
       },
     },
   },

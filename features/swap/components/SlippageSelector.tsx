@@ -97,9 +97,6 @@ const StyledDivForSelector = styled('button', {
       true: {
         backgroundColor: '$colors$dark15',
       },
-      false: {
-        backgroundColor: '$colors$dark10',
-      },
     },
   },
 })
