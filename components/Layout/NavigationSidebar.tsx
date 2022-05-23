@@ -65,7 +65,7 @@ export function NavigationSidebar({
       walletName={key?.name}
       onConnect={() => connectWallet(null)}
       onDisconnect={resetWalletConnection}
-      css={{ marginBottom: '$8' }}
+      css={{ marginBottom: '$8', color: 'white' }}
     />
   )
 
@@ -80,6 +80,7 @@ export function NavigationSidebar({
       <Button
         onClick={() => setOpen(true)}
         iconRight={<ChevronIcon rotation="-90deg" />}
+        css={{ color: 'white' }}
       >
         Menu
       </Button>
@@ -147,8 +148,7 @@ export function NavigationSidebar({
             <Logo />
           </StyledDivForLogo>
         </Link>
-
-        {walletButton}
+        <ButtonContainer>{walletButton}</ButtonContainer>
         <MenuLinks />
       </StyledMenuContainer>
       <div>
@@ -316,3 +316,8 @@ const buttonIconCss = {
     color: '$iconColors$tertiary',
   },
 }
+
+const ButtonContainer = styled('div', {
+  display: 'grid',
+  justifyContent: 'center',
+})

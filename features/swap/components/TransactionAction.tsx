@@ -90,6 +90,7 @@ export const TransactionAction = ({
         </Inline>
         <Inline css={{ display: 'grid', paddingTop: '$8' }}>
           <Button
+            css={{ color: 'white' }}
             variant="primary"
             size="large"
             disabled={shouldDisableSubmissionButton}
