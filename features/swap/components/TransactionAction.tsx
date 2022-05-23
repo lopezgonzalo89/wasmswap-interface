@@ -98,6 +98,11 @@ export const TransactionAction = ({
                 ? handleSwapButtonClick
                 : undefined
             }
+            style={{
+              background:
+                'linear-gradient(108.7deg,  #960ead 12%,#0ad8c7 100%)',
+              color: 'white',
+            }}
           >
             {isExecutingTransaction ? <Spinner instant /> : 'Swap'}
           </Button>
@@ -129,6 +134,10 @@ export const TransactionAction = ({
             ? handleSwapButtonClick
             : undefined
         }
+        style={{
+          background: 'linear-gradient(108.7deg,  #960ead 12%,#0ad8c7 100%)',
+          color: 'white',
+        }}
       >
         {isExecutingTransaction ? <Spinner instant /> : 'Swap'}
       </Button>

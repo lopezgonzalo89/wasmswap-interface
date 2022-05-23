@@ -41,7 +41,16 @@ export const ConnectedWalletButton = ({
   if (!connected) {
     return (
       <Column css={{ paddingBottom: '$6' }}>
-        <Button onClick={onConnect} size="large" variant="primary" {...props}>
+        <Button
+          onClick={onConnect}
+          size="large"
+          variant="primary"
+          {...props}
+          style={{
+            background: 'linear-gradient(108.7deg,  #960ead 12%,#0ad8c7 100%)',
+            color: 'white',
+          }}
+        >
           Connect Keplr
         </Button>
       </Column>
