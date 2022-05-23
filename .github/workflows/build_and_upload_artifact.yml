@@ -1,0 +1,62 @@
+name: Develop Deploy to Firebase Hosting on merge
+'on':
+  workflow_call:
+    inputs:
+      testModeDisabled:
+        required: true
+        type: boolean
+
+env:
+  # Basic
+  NEXT_PUBLIC_SITE_TITLE: Sourceswap
+  NEXT_PUBLIC_TEST_MODE_DISABLED: ${{ inputs.testModeDisabled }}
+  # github.ref_type: The type of ref that triggered the workflow run. Valid values are branch or tag.
+  # github.ref_name: The branch or tag name that triggered the workflow run. For example, feature-branch-1.
+  NEXT_PUBLIC_APP_VERSION: '${{ github.ref_type }}:${{ github.ref_name }}'
+  # github.sha: The commit SHA that triggered the workflow. The value of this commit SHA depends on the event that triggered the workflow.
+  NEXT_PUBLIC_APP_COMMIT: ${{ github.sha }}
+
+  # Asset Information
+  NEXT_PUBLIC_CHAIN_INFO_URL: /chain_info.testnet.json
+  NEXT_PUBLIC_TOKEN_LIST_URL: /token_list.testnet.json
+  NEXT_PUBLIC_IBC_ASSETS_URL: /ibc_assets.json
+  NEXT_PUBLIC_REWARDS_LIST_URL: /rewards_list.testnet.json
+
+  # Feature flags
+  NEXT_PUBLIC_ENABLE_FEATURE_TRANSFERS: true
+  NEXT_PUBLIC_ENABLE_FEATURE_STAKING: true
+  NEXT_PUBLIC_ENABLE_FEATURE_REWARDS: false
+  NEXT_PUBLIC_DARK_MODE_ENABLED_BY_DEFAULT: false
+
+  # Contact Information
+  NEXT_PUBLIC_FEEDBACK_LINK: '#'
+  NEXT_PUBLIC_INTERFACE_GITHUB_LINK: https://github.com/Wasmswap/wasmswap-interface
+  NEXT_PUBLIC_CONTRACTS_GITHUB_LINK: https://github.com/ben2x4/crustacean-swap
+  NEXT_PUBLIC_TELEGRAM_LINK: '#'
+  NEXT_PUBLIC_DISCORD_LINK: '#'
+  NEXT_PUBLIC_TWITTER_LINK: '#'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: out
+          path: out

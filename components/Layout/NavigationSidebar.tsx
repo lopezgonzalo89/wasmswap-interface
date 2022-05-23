@@ -1,4 +1,5 @@
 import { useConnectWallet } from 'hooks/useConnectWallet'
+import { useVersion } from 'hooks/useVersion'
 import { Logo, LogoText } from 'icons'
 import {
   AddressIcon,
@@ -46,7 +47,7 @@ export function NavigationSidebar({
 }: NavigationSidebarProps) {
   const { mutate: connectWallet } = useConnectWallet()
   const [{ key }, setWalletState] = useRecoilState(walletState)
-
+  const { version } = useVersion()
   const themeController = useControlTheme()
 
   const isMobile = useMedia('sm')
@@ -216,8 +217,12 @@ export function NavigationSidebar({
       </StyledMenuContainer>
       <div>
         <Text variant="legend" css={{ padding: '$4 $3' }}>
-          {APP_NAME} v{process.env.NEXT_PUBLIC_APP_VERSION}
+          {APP_NAME}
         </Text>
+        <Text variant="legend" css={{ padding: '$4 $3' }}>
+          {version}
+        </Text>
+        <br />
         <Inline css={{ display: 'grid' }}>
           <Button
             iconLeft={<MoonIcon />}

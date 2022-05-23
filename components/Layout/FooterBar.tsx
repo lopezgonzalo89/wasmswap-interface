@@ -1,11 +1,13 @@
+import { useVersion } from 'hooks/useVersion'
 import { Button, IconWrapper, styled, Text, UpRightArrow } from 'junoblocks'
 import { APP_NAME } from 'util/constants'
 
 export const FooterBar = () => {
+  const { version } = useVersion()
   return (
     <StyledFooter>
       <Text variant="legend" css={{ paddingRight: '$12' }}>
-        {APP_NAME} v{process.env.NEXT_PUBLIC_APP_VERSION}
+        {APP_NAME} {version}
       </Text>
       <StyledDivForGrid>
         <Button
