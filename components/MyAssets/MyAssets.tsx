@@ -1,4 +1,4 @@
-import { styled, Text } from 'junoblocks'
+import { media, styled, Text } from 'junoblocks'
 import React from 'react'
 
 const columns = [
@@ -73,6 +73,10 @@ const MyAssetsContainer = styled('div', {
   padding: 15,
   borderRadius: '8px',
   border: '1px solid #94cfe0',
+  [media.sm]: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
 })
 
 const Table = styled('div', {

@@ -275,7 +275,6 @@ const StyledWrapperForMobile = styled('div', {
   top: 0,
   padding: '$10 $12',
   backgroundColor: '$backgroundColors$base',
-  opacity: 0.7,
   zIndex: '$3',
 })
 

@@ -79,7 +79,6 @@ export const TransactionAction = ({
           justifyContent="space-between"
           css={{
             padding: '$8 $12',
-            backgroundColor: '$colors$dark10',
             borderRadius: '$1',
           }}
         >

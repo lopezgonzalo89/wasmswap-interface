@@ -144,7 +144,7 @@ export const TokenSwapModule = ({ initialTokenPair }: TokenSwapModuleProps) => {
 }
 
 const TokenSwapModuleContainer = styled('div', {
-  padding: '0px 20px',
+  padding: '20px',
   borderRadius: '8px',
   border: '1px solid #94cfe0',
   variants: {
