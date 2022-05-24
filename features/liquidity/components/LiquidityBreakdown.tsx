@@ -259,6 +259,12 @@ export const LiquidityBreakdown = ({
             </Text>
             <AprPill value={formattedYieldPercentageReturn} />
           </Column>
+          <Column gap={6} align="flex-start" justifyContent="flex-start">
+            <Text variant="legend" color="secondary" align="left">
+              24hs Volume
+            </Text>
+            <Text variant="header">8,312,987</Text>
+          </Column>
         </TotalInfoRow>
       </>
     </>
