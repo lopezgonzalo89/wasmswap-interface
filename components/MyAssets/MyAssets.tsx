@@ -24,19 +24,19 @@ const columns = [
 const rows = [
   {
     id: 'total',
-    label: '$13.500',
+    value: '$13,500',
   },
   {
     id: 'available',
-    label: '$100',
+    value: '$100',
   },
   {
     id: 'bonded',
-    label: '$5.000',
+    value: '$5,000',
   },
   {
     id: 'staked',
-    label: '$8.400',
+    value: '$8,400',
   },
 ]
 
@@ -52,10 +52,10 @@ export const MyAssets = () => {
             </Text>
           )
         })}
-        {rows.map(({ id, label }) => {
+        {rows.map(({ id, value }) => {
           return (
             <Text key={id} variant={'primary'}>
-              {label}
+              {value}
             </Text>
           )
         })}

@@ -1,4 +1,4 @@
-import MenuLinks from 'components/MenuLinks/MenuLinks'
+import { MenuLinks } from 'components/MenuLinks/MenuLinks'
 import { useConnectWallet } from 'hooks/useConnectWallet'
 import { useVersion } from 'hooks/useVersion'
 import { Logo } from 'icons'
