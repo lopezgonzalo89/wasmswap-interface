@@ -253,14 +253,14 @@ export const LiquidityBreakdown = ({
             </Column>
           )}
 
-          <Column gap={6} align="flex-end" justifyContent="flex-end">
-            <Text variant="legend" color="secondary" align="right">
+          <Column gap={6} align="center" justifyContent="center">
+            <Text variant="legend" color="secondary" align="center">
               APR reward
             </Text>
             <AprPill value={formattedYieldPercentageReturn} />
           </Column>
-          <Column gap={6} align="flex-start" justifyContent="flex-start">
-            <Text variant="legend" color="secondary" align="left">
+          <Column gap={6} align="flex-end" justifyContent="flex-end">
+            <Text variant="legend" color="secondary" align="right">
               24hs Volume
             </Text>
             <Text variant="header">8,312,987</Text>
@@ -280,7 +280,7 @@ function TotalInfoRow({ children }) {
         css={{
           ...baseCss,
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr 0.75fr 0.75fr',
+          gridTemplateColumns: '0.9fr 0.9fr 0.7fr 0.75fr 0.75fr 0.75fr',
         }}
       >
         {children}
