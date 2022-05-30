@@ -37,7 +37,7 @@ const links = [
   {
     id: 'stats',
     label: 'Stats',
-    href: '#',
+    href: '/stats',
     icon: <Open />,
   },
   {
