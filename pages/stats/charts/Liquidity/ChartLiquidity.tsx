@@ -1,25 +1,19 @@
-import { createChart } from 'lightweight-charts'
-import React, { useEffect, useRef } from 'react'
+import { createChart, IChartApi, ISeriesApi } from 'lightweight-charts'
+import React, { LegacyRef, useEffect, useRef } from 'react'
 import { ResizeObserver } from 'resize-observer'
+import { formatterNumber } from 'util/format'
 
-export const formatterNumber = (num) => {
-  if (Math.abs(num) < 1_000) {
-    return num
-  } else if (Math.abs(num) < 1_000_000) {
-    return parseFloat((num / 1000).toFixed(1)) + 'K' // convert to K for number from > 1000 < 1 million
-  } else if (Math.abs(num) < 1_000_000_000) {
-    return parseFloat((num / 1_000_000).toFixed(1)) + 'M' // convert to M for number from > 1 million
-  } else {
-    return parseFloat((num / 1_000_000_000).toFixed(1)) + 'B' // convert to M for number from > 1 billion
-  }
-}
+import { ChartLiquidityType } from '../charts.types'
 
-// TODO: tipificar
-export const ChartLiquidity = ({ data, crossMove, onMouseLeave }) => {
-  const chartRef = useRef(null)
-  const containerRef = useRef(null)
-  const serieRef = useRef(null)
-  const resizeObserver = useRef(null)
+export const ChartLiquidity = ({
+  data,
+  crossMove,
+  onMouseLeave,
+}: ChartLiquidityType): JSX.Element => {
+  const chartRef: React.MutableRefObject<IChartApi> = useRef(null)
+  const containerRef: LegacyRef<HTMLDivElement> = useRef(null)
+  const serieRef: React.MutableRefObject<ISeriesApi<'Area'>> = useRef(null)
+  const resizeObserver: React.MutableRefObject<ResizeObserver> = useRef(null)
 
   useEffect(() => {
     if (chartRef.current && containerRef.current) {
@@ -30,9 +24,7 @@ export const ChartLiquidity = ({ data, crossMove, onMouseLeave }) => {
           chartRef.current.timeScale().fitContent()
         }, 0)
       })
-      resizeObserver.current.observe(containerRef.current, {
-        box: 'content-box',
-      })
+      resizeObserver.current.observe(containerRef.current)
       return () => {
         resizeObserver.current.disconnect()
       }
@@ -42,7 +34,7 @@ export const ChartLiquidity = ({ data, crossMove, onMouseLeave }) => {
   useEffect(() => {
     // Initialization
     if (chartRef.current === null && containerRef.current) {
-      let chart = createChart(containerRef.current, {
+      let chart: IChartApi = createChart(containerRef.current, {
         rightPriceScale: {
           scaleMargins: {
             bottom: 0,

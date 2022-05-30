@@ -1,9 +1,10 @@
-import { Button } from 'junoblocks'
+import { Button, styled } from 'junoblocks'
 import dynamic from 'next/dynamic'
 import { getLiquidityData } from 'queries/stats/getLiquidityData'
 import React, { useEffect, useState } from 'react'
 
-import LiquidityInfo from './LiquidityInfo'
+import { Currency, Data, Filter, Item } from '../charts.types'
+import { LiquidityInfo } from './LiquidityInfo'
 
 // In Server side Chart library cannot be imported
 // This is used to import Chart Library in Client Side
@@ -11,16 +12,22 @@ const ChartLiquidity = dynamic(() => import('./ChartLiquidity'), {
   ssr: false,
 })
 
-export const Liquidity = () => {
-  const title = 'Liquidity'
-  const [dataDay, setDataDay] = useState([])
-  const [dataWeek, setDataWeek] = useState([])
-  const [dataMonth, setDataMonth] = useState([])
-  const [currentData, setCurrantData] = useState([])
-  const [currentItem, setCurrentItem] = useState({ time: null, value: '' })
-  const [range, setRange] = useState('d')
-  const [rangeType, setRangeType] = useState('usd')
-  const [currency, setCurrency] = useState({ value: '$', before: true })
+export const Liquidity = (): JSX.Element => {
+  const title: string = 'Liquidity'
+  const [dataDay, setDataDay] = useState<Data[]>([])
+  const [dataWeek, setDataWeek] = useState<Data[]>([])
+  const [dataMonth, setDataMonth] = useState<Data[]>([])
+  const [currentData, setCurrantData] = useState<Data[]>([])
+  const [currentItem, setCurrentItem] = useState<Item>({
+    time: null,
+    value: null,
+  })
+  const [range, setRange] = useState<string>('d')
+  const [rangeType, setRangeType] = useState<string>('usd')
+  const [currency, setCurrency] = useState<Currency>({
+    value: '$',
+    before: true,
+  })
 
   useEffect(() => {
     const { dataDay, dataWeek, dataMonth } = getLiquidityData()
@@ -29,9 +36,10 @@ export const Liquidity = () => {
     setDataMonth(dataMonth)
   }, [])
 
-  const changeRange = (value) => {
-    let data = []
-    let key = ''
+  const changeRange = (value: string) => {
+    let data: Data[] = []
+
+    let key: string = ''
     if (rangeType === 'usd') {
       key = 'value'
     } else if (rangeType === 'source') {
@@ -40,26 +48,32 @@ export const Liquidity = () => {
       key = 'value_atom'
     }
     if (value === 'd') {
-      data = dataDay.map((item) => ({ time: item.time, value: item[key] }))
+      data = dataDay.map((item: Data) => ({
+        time: item.time,
+        value: Number(item[key]),
+      }))
     } else if (value === 'w') {
-      data = dataWeek.map((item) => ({ time: item.time, value: item[key] }))
+      data = dataWeek.map((item) => ({
+        time: item.time,
+        value: Number(item[key]),
+      }))
     } else if (value === 'm') {
-      data = dataMonth.map((item) => ({ time: item.time, value: item[key] }))
+      data = dataMonth.map((item) => ({
+        time: item.time,
+        value: Number(item[key]),
+      }))
     }
     setCurrantData(data)
     setCurrentItem({ ...data[data.length - 1] })
     setRange(value)
   }
-
-  useEffect(() => {
-    if (dataDay.length > 0) changeRange('d')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataDay])
-
-  const changeRangeType = (value) => {
-    let data = []
-    let key = ''
-    let currency = { value: '$', before: true }
+  const changeRangeType = (value: string) => {
+    let data: Data[] = []
+    let key: string = ''
+    let currency: Currency = {
+      value: '$',
+      before: true,
+    }
     if (value === 'usd') {
       key = 'value'
     } else if (value === 'source') {
@@ -70,11 +84,20 @@ export const Liquidity = () => {
       currency = { value: 'ATOM', before: false }
     }
     if (range === 'd') {
-      data = dataDay.map((item) => ({ time: item.time, value: item[key] }))
+      data = dataDay.map((item) => ({
+        time: item.time,
+        value: Number(item[key]),
+      }))
     } else if (range === 'w') {
-      data = dataWeek.map((item) => ({ time: item.time, value: item[key] }))
+      data = dataWeek.map((item) => ({
+        time: item.time,
+        value: Number(item[key]),
+      }))
     } else if (range === 'm') {
-      data = dataMonth.map((item) => ({ time: item.time, value: item[key] }))
+      data = dataMonth.map((item) => ({
+        time: item.time,
+        value: Number(item[key]),
+      }))
     }
     setCurrantData(data)
     setCurrentItem({ ...data[data.length - 1] })
@@ -82,20 +105,12 @@ export const Liquidity = () => {
     setCurrency(currency)
   }
 
-  const handleOnMouseLeave = () => {
-    if (currentData.length > 0)
-      setCurrentItem({
-        time: currentData[currentData.length - 1].time,
-        value: currentData[currentData.length - 1].value,
-      })
-  }
+  useEffect(() => {
+    if (dataDay.length > 0) changeRange('d')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataDay])
 
-  const handleCrossMove = (item) => {
-    setCurrentItem(item)
-  }
-
-  // TODO: move
-  const liquidityDataType = [
+  const liquidityFilters: Filter[] = [
     {
       id: 'rangeType',
       values: [
@@ -116,21 +131,17 @@ export const Liquidity = () => {
     },
   ]
 
+  const handleOnMouseLeave = () => {
+    if (currentData.length > 0)
+      setCurrentItem({
+        time: currentData[currentData.length - 1].time,
+        value: currentData[currentData.length - 1].value,
+      })
+  }
+
   return (
-    <div
-      style={{
-        height: '100%',
-        display: 'grid',
-        gridTemplateRows: '20% 80%',
-        gap: 15,
-      }}
-    >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-        }}
-      >
+    <ChartContainer>
+      <InfoContainer>
         <LiquidityInfo
           title={title}
           range={range}
@@ -138,51 +149,61 @@ export const Liquidity = () => {
           currency={currency}
         />
         <div>
-          {liquidityDataType.map(({ id, values, callback }) => {
+          {liquidityFilters.map(({ id, values, callback }: Filter) => {
             return (
-              <div key={id}>
-                <div
-                  style={{
-                    marginBottom: 10,
-                    display: 'flex',
-                    justifyContent: 'end',
-                  }}
-                >
-                  {values.map(({ id, label }) => {
-                    return (
-                      <Button
-                        key={id}
-                        variant="secondary"
-                        onClick={() => {
-                          callback(id)
-                        }}
-                        css={{
-                          color: '$colors$white',
-                          marginRight: 2,
-                          backgroundColor: `${
-                            rangeType === id || range === id
-                              ? '$colors$black80'
-                              : '$colors$black50'
-                          }`,
-                        }}
-                      >
-                        {label}
-                      </Button>
-                    )
-                  })}
-                </div>
-              </div>
+              <ButtonsGroup key={id}>
+                {values.map(({ id, label }) => {
+                  return (
+                    <Button
+                      key={id}
+                      variant="secondary"
+                      onClick={() => {
+                        callback(id)
+                      }}
+                      css={{
+                        color: '$colors$white',
+                        marginRight: 2,
+                        backgroundColor: `${
+                          rangeType === id || range === id
+                            ? '$colors$black80'
+                            : '$colors$black50'
+                        }`,
+                      }}
+                    >
+                      {label}
+                    </Button>
+                  )
+                })}
+              </ButtonsGroup>
             )
           })}
         </div>
-      </div>
+      </InfoContainer>
       <ChartLiquidity
         data={currentData}
-        crossMove={handleCrossMove}
+        crossMove={setCurrentItem}
         onMouseLeave={handleOnMouseLeave}
       />
-    </div>
+    </ChartContainer>
   )
 }
 
 export default Liquidity
+
+const ChartContainer = styled('div', {
+  height: '100%',
+  display: 'grid',
+  gridTemplateRows: '20% 80%',
+  gap: 15,
+})
+
+const InfoContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+})
+
+const ButtonsGroup = styled('div', {
+  marginBottom: 10,
+  display: 'flex',
+  justifyContent: 'end',
+})

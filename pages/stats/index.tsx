@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Liquidity } from './charts/Liquidity'
 
-export const Stats = () => {
+export const Stats = (): JSX.Element => {
   return (
     <AppLayout>
       <StyledContainer>
