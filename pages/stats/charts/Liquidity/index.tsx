@@ -1,10 +1,12 @@
-import { Button, styled } from 'junoblocks'
+import { Button } from 'junoblocks'
 import dynamic from 'next/dynamic'
+import { ButtonsGroup, ChartContainer, InfoContainer } from 'pages/stats'
 import { getLiquidityData } from 'queries/stats/getLiquidityData'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { getDataByRange } from 'util/getDataByRange'
 
-import { Currency, Data, Filter, Item } from '../charts.types'
-import { LiquidityInfo } from './LiquidityInfo'
+import { ChartInfo } from '../ChartInfo'
+import { Currency, Data, Datas, Filter, Item } from '../charts.types'
 
 // In Server side Chart library cannot be imported
 // This is used to import Chart Library in Client Side
@@ -14,9 +16,9 @@ const Chart = dynamic(() => import('../Chart'), {
 
 export const Liquidity = (): JSX.Element => {
   const title: string = 'Liquidity'
-  const [dataDay, setDataDay] = useState<Data[]>([])
-  const [dataWeek, setDataWeek] = useState<Data[]>([])
-  const [dataMonth, setDataMonth] = useState<Data[]>([])
+  const [data, setData] = useState<Datas>({})
+  const { dataDay } = data
+
   const [currentData, setCurrantData] = useState<Data[]>([])
   const [currentItem, setCurrentItem] = useState<Item>({
     time: null,
@@ -30,43 +32,34 @@ export const Liquidity = (): JSX.Element => {
   })
 
   useEffect(() => {
-    const { dataDay, dataWeek, dataMonth } = getLiquidityData()
-    setDataDay(dataDay)
-    setDataWeek(dataWeek)
-    setDataMonth(dataMonth)
+    const data: Datas = getLiquidityData()
+    setData(data)
   }, [])
 
-  const getDataByRange = ({ idRange, idToken }): Data[] => {
-    if (idRange === 'd') {
-      return dataDay.map((item: Data) => ({
-        time: item.time,
-        value: Number(item[idToken]),
-      }))
-    } else if (idRange === 'w') {
-      return dataWeek.map((item) => ({
-        time: item.time,
-        value: Number(item[idToken]),
-      }))
-    } else if (idRange === 'm') {
-      return dataMonth.map((item) => ({
-        time: item.time,
-        value: Number(item[idToken]),
-      }))
-    }
-  }
+  const changeRange = useCallback(
+    (idRange: string) => {
+      const currentData: Data[] = getDataByRange({
+        data,
+        idRange,
+        idToken: token,
+      })
 
-  const changeRange = (idRange: string) => {
-    const data: Data[] = getDataByRange({ idRange, idToken: token })
+      setCurrantData(currentData)
+      setCurrentItem({ ...currentData[currentData.length - 1] })
+      setRange(idRange)
+    },
+    [data, token]
+  )
 
-    setCurrantData(data)
-    setCurrentItem({ ...data[data.length - 1] })
-    setRange(idRange)
-  }
   const changeToken = (idToken: string) => {
-    const data: Data[] = getDataByRange({ idRange: range, idToken })
+    const currentData: Data[] = getDataByRange({
+      data,
+      idRange: range,
+      idToken,
+    })
 
-    setCurrantData(data)
-    setCurrentItem({ ...data[data.length - 1] })
+    setCurrantData(currentData)
+    setCurrentItem({ ...currentData[currentData.length - 1] })
     setToken(idToken)
 
     let currency: Currency = {
@@ -82,9 +75,8 @@ export const Liquidity = (): JSX.Element => {
   }
 
   useEffect(() => {
-    if (dataDay.length > 0) changeRange('d')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataDay])
+    if (dataDay?.length > 0) changeRange('d')
+  }, [changeRange, dataDay])
 
   const liquidityFilters: Filter[] = [
     {
@@ -118,7 +110,7 @@ export const Liquidity = (): JSX.Element => {
   return (
     <ChartContainer>
       <InfoContainer>
-        <LiquidityInfo
+        <ChartInfo
           title={title}
           range={range}
           data={currentItem}
@@ -172,21 +164,3 @@ export const Liquidity = (): JSX.Element => {
 }
 
 export default Liquidity
-
-const ChartContainer = styled('div', {
-  height: '100%',
-  display: 'grid',
-  gridTemplateRows: '20% 80%',
-  gap: 15,
-})
-
-const InfoContainer = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-})
-
-const ButtonsGroup = styled('div', {
-  marginBottom: 10,
-  display: 'flex',
-  justifyContent: 'end',
-})

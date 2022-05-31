@@ -95,7 +95,7 @@ export const Chart = ({
     return () => {
       chartRef.current.unsubscribeCrosshairMove(hover)
     }
-  }, [crossMove])
+  }, [chartType, crossMove, options])
 
   useEffect(() => {
     // When data is updated

@@ -7,9 +7,9 @@ import {
   timeToDate,
 } from 'util/format'
 
-import { LiquidityInfoType, Price } from '../charts.types'
+import { LiquidityInfoType, Price } from './charts.types'
 
-export const LiquidityInfo = ({
+export const ChartInfo = ({
   title,
   range,
   data,

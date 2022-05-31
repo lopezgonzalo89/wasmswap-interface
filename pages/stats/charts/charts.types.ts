@@ -7,6 +7,8 @@ export type Data = Item & {
   [token: string]: number | string
 }
 
+export type Datas = { [data: string]: Array<Data> }
+
 export type Filter = {
   id: string
   values: Array<{ id: string; label: string }>

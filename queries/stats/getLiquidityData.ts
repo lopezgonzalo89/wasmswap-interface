@@ -1,8 +1,6 @@
-import { Data } from 'pages/stats/charts/charts.types'
+import { Datas } from 'pages/stats/charts/charts.types'
 
-export const getLiquidityData = (): {
-  [dataDay: string]: Array<Data>
-} => {
+export const getLiquidityData = (): Datas => {
   return {
     dataDay: [
       {
