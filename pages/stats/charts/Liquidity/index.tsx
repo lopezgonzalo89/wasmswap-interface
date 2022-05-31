@@ -23,7 +23,7 @@ export const Liquidity = (): JSX.Element => {
     value: null,
   })
   const [range, setRange] = useState<string>('d')
-  const [rangeType, setRangeType] = useState<string>('usd')
+  const [token, setToken] = useState<string>('value')
   const [currency, setCurrency] = useState<Currency>({
     value: '$',
     before: true,
@@ -36,72 +36,48 @@ export const Liquidity = (): JSX.Element => {
     setDataMonth(dataMonth)
   }, [])
 
-  const changeRange = (value: string) => {
-    let data: Data[] = []
+  const getDataByRange = ({ idRange, idToken }): Data[] => {
+    if (idRange === 'd') {
+      return dataDay.map((item: Data) => ({
+        time: item.time,
+        value: Number(item[idToken]),
+      }))
+    } else if (idRange === 'w') {
+      return dataWeek.map((item) => ({
+        time: item.time,
+        value: Number(item[idToken]),
+      }))
+    } else if (idRange === 'm') {
+      return dataMonth.map((item) => ({
+        time: item.time,
+        value: Number(item[idToken]),
+      }))
+    }
+  }
 
-    let key: string = ''
-    if (rangeType === 'usd') {
-      key = 'value'
-    } else if (rangeType === 'source') {
-      key = 'value_source'
-    } else {
-      key = 'value_atom'
-    }
-    if (value === 'd') {
-      data = dataDay.map((item: Data) => ({
-        time: item.time,
-        value: Number(item[key]),
-      }))
-    } else if (value === 'w') {
-      data = dataWeek.map((item) => ({
-        time: item.time,
-        value: Number(item[key]),
-      }))
-    } else if (value === 'm') {
-      data = dataMonth.map((item) => ({
-        time: item.time,
-        value: Number(item[key]),
-      }))
-    }
+  const changeRange = (idRange: string) => {
+    const data: Data[] = getDataByRange({ idRange, idToken: token })
+
     setCurrantData(data)
     setCurrentItem({ ...data[data.length - 1] })
-    setRange(value)
+    setRange(idRange)
   }
-  const changeRangeType = (value: string) => {
-    let data: Data[] = []
-    let key: string = ''
+  const changeToken = (idToken: string) => {
+    const data: Data[] = getDataByRange({ idRange: range, idToken })
+
+    setCurrantData(data)
+    setCurrentItem({ ...data[data.length - 1] })
+    setToken(idToken)
+
     let currency: Currency = {
       value: '$',
       before: true,
     }
-    if (value === 'usd') {
-      key = 'value'
-    } else if (value === 'source') {
-      key = 'value_source'
+    if (idToken === 'value_source') {
       currency = { value: 'SOURCE', before: false }
-    } else {
-      key = 'value_atom'
+    } else if (idToken === 'value_atom') {
       currency = { value: 'ATOM', before: false }
     }
-    if (range === 'd') {
-      data = dataDay.map((item) => ({
-        time: item.time,
-        value: Number(item[key]),
-      }))
-    } else if (range === 'w') {
-      data = dataWeek.map((item) => ({
-        time: item.time,
-        value: Number(item[key]),
-      }))
-    } else if (range === 'm') {
-      data = dataMonth.map((item) => ({
-        time: item.time,
-        value: Number(item[key]),
-      }))
-    }
-    setCurrantData(data)
-    setCurrentItem({ ...data[data.length - 1] })
-    setRangeType(value)
     setCurrency(currency)
   }
 
@@ -112,13 +88,13 @@ export const Liquidity = (): JSX.Element => {
 
   const liquidityFilters: Filter[] = [
     {
-      id: 'rangeType',
+      id: 'token',
       values: [
-        { id: 'usd', label: 'USD' },
-        { id: 'atom', label: 'ATOM' },
-        { id: 'source', label: 'SOURCE' },
+        { id: 'value', label: 'USD' },
+        { id: 'value_atom', label: 'ATOM' },
+        { id: 'value_source', label: 'SOURCE' },
       ],
-      callback: changeRangeType,
+      callback: changeToken,
     },
     {
       id: 'range',
@@ -164,7 +140,7 @@ export const Liquidity = (): JSX.Element => {
                         color: '$colors$white',
                         marginRight: 2,
                         backgroundColor: `${
-                          rangeType === id || range === id
+                          token === id || range === id
                             ? '$colors$black80'
                             : '$colors$black50'
                         }`,
