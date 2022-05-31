@@ -41,6 +41,7 @@ const StatsContainer = styled('div', {
   gap: 10,
 })
 
+// TODO: set for mobile
 export const ChartContainer = styled('div', {
   height: '100%',
   display: 'grid',

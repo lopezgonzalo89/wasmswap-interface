@@ -1,5 +1,10 @@
-import { createChart, IChartApi, ISeriesApi } from 'lightweight-charts'
-import React, { LegacyRef, useEffect, useRef } from 'react'
+import {
+  createChart,
+  IChartApi,
+  ISeriesApi,
+  SeriesType,
+} from 'lightweight-charts'
+import React, { LegacyRef, MutableRefObject, useEffect, useRef } from 'react'
 import { ResizeObserver } from 'resize-observer'
 import { formatterNumber } from 'util/format'
 
@@ -12,10 +17,10 @@ export const Chart = ({
   chartType,
   options = {},
 }: ChartType): JSX.Element => {
-  const chartRef: React.MutableRefObject<IChartApi> = useRef(null)
+  const chartRef: MutableRefObject<IChartApi> = useRef(null)
   const containerRef: LegacyRef<HTMLDivElement> = useRef(null)
-  const serieRef: React.MutableRefObject<ISeriesApi<'Area'>> = useRef(null)
-  const resizeObserver: React.MutableRefObject<ResizeObserver> = useRef(null)
+  const serieRef: MutableRefObject<ISeriesApi<SeriesType>> = useRef(null)
+  const resizeObserver: MutableRefObject<ResizeObserver> = useRef(null)
 
   useEffect(() => {
     if (chartRef.current && containerRef.current) {
@@ -36,7 +41,7 @@ export const Chart = ({
   useEffect(() => {
     // Initialization
     if (chartRef.current === null && containerRef.current) {
-      let chart: IChartApi = createChart(containerRef.current, {
+      const chart: IChartApi = createChart(containerRef.current, {
         rightPriceScale: {
           scaleMargins: {
             bottom: 0,
@@ -98,7 +103,6 @@ export const Chart = ({
   }, [chartType, crossMove, options])
 
   useEffect(() => {
-    // When data is updated
     serieRef.current.setData(data)
     chartRef.current.timeScale().fitContent()
   }, [data])

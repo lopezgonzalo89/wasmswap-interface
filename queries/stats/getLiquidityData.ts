@@ -1,5 +1,6 @@
 import { Datas } from 'pages/stats/charts/charts.types'
 
+// TODO: replace for fetch when backend is ready
 export const getLiquidityData = (): Datas => {
   return {
     dataDay: [

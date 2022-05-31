@@ -8,8 +8,7 @@ import { getDataByRange } from 'util/getDataByRange'
 import { ChartInfo } from '../ChartInfo'
 import { Currency, Data, Datas, Filter, Item } from '../charts.types'
 
-// In Server side Chart library cannot be imported
-// This is used to import Chart Library in Client Side
+// This is used to import and render Chart Library in Client Side
 const Chart = dynamic(() => import('../Chart'), {
   ssr: false,
 })
@@ -17,7 +16,6 @@ const Chart = dynamic(() => import('../Chart'), {
 export const Liquidity = (): JSX.Element => {
   const title: string = 'Liquidity'
   const [data, setData] = useState<Datas>({})
-  const { dataDay } = data
 
   const [currentData, setCurrantData] = useState<Data[]>([])
   const [currentItem, setCurrentItem] = useState<Item>({
@@ -38,29 +36,33 @@ export const Liquidity = (): JSX.Element => {
 
   const changeRange = useCallback(
     (idRange: string) => {
+      setRange(idRange)
+
       const currentData: Data[] = getDataByRange({
         data,
         idRange,
         idToken: token,
       })
-
-      setCurrantData(currentData)
-      setCurrentItem({ ...currentData[currentData.length - 1] })
-      setRange(idRange)
+      if (currentData) {
+        setCurrantData(currentData)
+        setCurrentItem({ ...currentData[currentData.length - 1] })
+      }
     },
     [data, token]
   )
 
   const changeToken = (idToken: string) => {
+    setToken(idToken)
+
     const currentData: Data[] = getDataByRange({
       data,
       idRange: range,
       idToken,
     })
-
-    setCurrantData(currentData)
-    setCurrentItem({ ...currentData[currentData.length - 1] })
-    setToken(idToken)
+    if (currentData) {
+      setCurrantData(currentData)
+      setCurrentItem({ ...currentData[currentData.length - 1] })
+    }
 
     let currency: Currency = {
       value: '$',
@@ -75,8 +77,8 @@ export const Liquidity = (): JSX.Element => {
   }
 
   useEffect(() => {
-    if (dataDay?.length > 0) changeRange('d')
-  }, [changeRange, dataDay])
+    if (data) changeRange('d')
+  }, [changeRange, data])
 
   const liquidityFilters: Filter[] = [
     {
@@ -147,18 +149,23 @@ export const Liquidity = (): JSX.Element => {
           })}
         </div>
       </InfoContainer>
-      <Chart
-        data={currentData}
-        crossMove={setCurrentItem}
-        onMouseLeave={handleOnMouseLeave}
-        chartType="addAreaSeries"
-        options={{
-          topColor: 'rgba(196, 164, 106, 0.4)',
-          bottomColor: 'rgba(196, 164, 106, 0.0)',
-          lineColor: 'rgba(251, 192, 45, 1)',
-          lineWidth: 3,
-        }}
-      />
+      {currentData ? (
+        <Chart
+          data={currentData}
+          crossMove={setCurrentItem}
+          onMouseLeave={handleOnMouseLeave}
+          chartType="addAreaSeries"
+          options={{
+            topColor: 'rgba(196, 164, 106, 0.4)',
+            bottomColor: 'rgba(196, 164, 106, 0.0)',
+            lineColor: 'rgba(251, 192, 45, 1)',
+            lineWidth: 3,
+          }}
+        />
+      ) : (
+        // TODO: Add loading
+        <div>LOADING</div>
+      )}
     </ChartContainer>
   )
 }

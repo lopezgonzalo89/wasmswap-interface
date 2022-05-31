@@ -1,9 +1,8 @@
 import { Text } from 'junoblocks'
 import React, { useEffect, useState } from 'react'
 import {
-  formatDate,
+  formatDateForDisplay,
   formateNumberDecimals,
-  getDates,
   timeToDate,
 } from 'util/format'
 
@@ -19,14 +18,6 @@ export const ChartInfo = ({
     price: '',
     date: '-',
   })
-
-  const formatDateForDisplay = (date: Date, range: string): string => {
-    if (range && range !== 'd') {
-      const dates: Date[] = getDates(date, range)
-      return `${formatDate(dates[0])} - ${formatDate(dates[1])}`
-    }
-    return formatDate(date)
-  }
 
   useEffect(() => {
     const formatPriceForDisplay = (price: number): string => {

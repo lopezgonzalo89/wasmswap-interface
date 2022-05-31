@@ -1,7 +1,7 @@
 import { Data } from 'pages/stats/charts/charts.types'
 
 export const getDataByRange = ({ data, idRange, idToken }): Data[] => {
-  if (data) {
+  if (data?.dataDay) {
     if (idRange === 'd') {
       return data.dataDay.map((item: Data) => ({
         time: item.time,

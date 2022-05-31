@@ -69,3 +69,11 @@ export const formatterNumber = (num: number): string => {
     return parseFloat((num / 1_000_000_000).toFixed(1)) + 'B' // convert to M for number from > 1 billion
   }
 }
+
+export const formatDateForDisplay = (date: Date, range: string): string => {
+  if (range && range !== 'd') {
+    const dates: Date[] = getDates(date, range)
+    return `${formatDate(dates[0])} - ${formatDate(dates[1])}`
+  }
+  return formatDate(date)
+}
