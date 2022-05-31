@@ -3,13 +3,15 @@ import React, { LegacyRef, useEffect, useRef } from 'react'
 import { ResizeObserver } from 'resize-observer'
 import { formatterNumber } from 'util/format'
 
-import { ChartLiquidityType } from '../charts.types'
+import { ChartType } from './charts.types'
 
-export const ChartLiquidity = ({
+export const Chart = ({
   data,
   crossMove,
   onMouseLeave,
-}: ChartLiquidityType): JSX.Element => {
+  chartType,
+  options = {},
+}: ChartType): JSX.Element => {
   const chartRef: React.MutableRefObject<IChartApi> = useRef(null)
   const containerRef: LegacyRef<HTMLDivElement> = useRef(null)
   const serieRef: React.MutableRefObject<ISeriesApi<'Area'>> = useRef(null)
@@ -78,12 +80,7 @@ export const ChartLiquidity = ({
         },
       })
 
-      serieRef.current = chart.addAreaSeries({
-        topColor: 'rgba(196, 164, 106, 0.4)',
-        bottomColor: 'rgba(196, 164, 106, 0.0)',
-        lineColor: 'rgba(251, 192, 45, 1)',
-        lineWidth: 3,
-      })
+      serieRef.current = chart[chartType](options)
       chartRef.current = chart
     }
 
@@ -109,4 +106,4 @@ export const ChartLiquidity = ({
   return <div onMouseLeave={onMouseLeave} ref={containerRef} />
 }
 
-export default ChartLiquidity
+export default Chart

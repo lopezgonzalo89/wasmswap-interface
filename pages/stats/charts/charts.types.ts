@@ -32,8 +32,10 @@ export type LiquidityInfoType = {
   currency: Currency
 }
 
-export type ChartLiquidityType = {
+export type ChartType = {
   data: Data[]
   crossMove: React.Dispatch<React.SetStateAction<Item>>
   onMouseLeave: () => void
+  chartType: string
+  options: any
 }

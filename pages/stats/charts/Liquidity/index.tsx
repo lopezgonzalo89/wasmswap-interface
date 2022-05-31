@@ -8,7 +8,7 @@ import { LiquidityInfo } from './LiquidityInfo'
 
 // In Server side Chart library cannot be imported
 // This is used to import Chart Library in Client Side
-const ChartLiquidity = dynamic(() => import('./ChartLiquidity'), {
+const Chart = dynamic(() => import('../Chart'), {
   ssr: false,
 })
 
@@ -155,10 +155,17 @@ export const Liquidity = (): JSX.Element => {
           })}
         </div>
       </InfoContainer>
-      <ChartLiquidity
+      <Chart
         data={currentData}
         crossMove={setCurrentItem}
         onMouseLeave={handleOnMouseLeave}
+        chartType="addAreaSeries"
+        options={{
+          topColor: 'rgba(196, 164, 106, 0.4)',
+          bottomColor: 'rgba(196, 164, 106, 0.0)',
+          lineColor: 'rgba(251, 192, 45, 1)',
+          lineWidth: 3,
+        }}
       />
     </ChartContainer>
   )

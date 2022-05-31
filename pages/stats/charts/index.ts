@@ -1,1 +1,1 @@
-export { ChartLiquidity } from './Liquidity/ChartLiquidity'
+export { Chart } from './Chart'
