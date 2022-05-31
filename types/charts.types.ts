@@ -27,7 +27,7 @@ export type Price = {
   date: string
 }
 
-export type LiquidityInfoType = {
+export type LiquidityInfoComponent = {
   title: string
   range: string
   data: Data

@@ -3,7 +3,7 @@ import { AppLayout, PageHeader } from 'components'
 import { Card } from 'junoblocks'
 import React from 'react'
 
-import { Liquidity } from './charts/Liquidity'
+import { Liquidity } from './Liquidity'
 
 export const Stats = (): JSX.Element => {
   return (

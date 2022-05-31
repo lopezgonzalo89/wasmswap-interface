@@ -1,4 +1,4 @@
-import { Datas } from 'pages/stats/charts/charts.types'
+import { Datas } from 'types/charts.types'
 
 // TODO: replace for fetch when backend is ready
 export const getLiquidityData = (): Datas => {

@@ -6,9 +6,8 @@ import {
 } from 'lightweight-charts'
 import React, { LegacyRef, MutableRefObject, useEffect, useRef } from 'react'
 import { ResizeObserver } from 'resize-observer'
+import { ChartType } from 'types/charts.types'
 import { formatterNumber } from 'util/format'
-
-import { ChartType } from './charts.types'
 
 export const Chart = ({
   data,

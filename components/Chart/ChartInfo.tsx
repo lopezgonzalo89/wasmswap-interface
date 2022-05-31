@@ -1,19 +1,18 @@
 import { Text } from 'junoblocks'
 import React, { useEffect, useState } from 'react'
+import { LiquidityInfoComponent, Price } from 'types/charts.types'
 import {
   formatDateForDisplay,
   formateNumberDecimals,
   timeToDate,
 } from 'util/format'
 
-import { LiquidityInfoType, Price } from './charts.types'
-
 export const ChartInfo = ({
   title,
   range,
   data,
   currency = { value: '$', before: true },
-}: LiquidityInfoType): JSX.Element => {
+}: LiquidityInfoComponent): JSX.Element => {
   const [currentInfo, setCurrentInfo] = useState<Price>({
     price: '',
     date: '-',
@@ -47,4 +46,4 @@ export const ChartInfo = ({
   )
 }
 
-export default LiquidityInfoType
+export default ChartInfo

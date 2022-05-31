@@ -1,15 +1,14 @@
+import { ChartInfo } from 'components/Chart/ChartInfo'
 import { Button } from 'junoblocks'
 import dynamic from 'next/dynamic'
 import { ButtonsGroup, ChartContainer, InfoContainer } from 'pages/stats'
 import { getLiquidityData } from 'queries/stats/getLiquidityData'
 import React, { useCallback, useEffect, useState } from 'react'
+import { Currency, Data, Datas, Filter, Item } from 'types/charts.types'
 import { getDataByRange } from 'util/getDataByRange'
 
-import { ChartInfo } from '../ChartInfo'
-import { Currency, Data, Datas, Filter, Item } from '../charts.types'
-
 // This is used to import and render Chart Library in Client Side
-const Chart = dynamic(() => import('../Chart'), {
+const Chart = dynamic(() => import('components/Chart/Chart'), {
   ssr: false,
 })
 

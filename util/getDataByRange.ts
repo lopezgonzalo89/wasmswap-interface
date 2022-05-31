@@ -1,6 +1,7 @@
-import { Data } from 'pages/stats/charts/charts.types'
+import { Data } from 'types/charts.types'
 
 export const getDataByRange = ({ data, idRange, idToken }): Data[] => {
+  // TODO: check data when removed mockup and set backend API
   if (data?.dataDay) {
     if (idRange === 'd') {
       return data.dataDay.map((item: Data) => ({
