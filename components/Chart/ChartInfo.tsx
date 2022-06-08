@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { LiquidityInfoComponent, Price } from 'types/charts.types'
 import {
   formatDateForDisplay,
-  formateNumberDecimals,
+  formatNumberDecimals,
   timeToDate,
 } from 'util/format'
 
@@ -20,7 +20,7 @@ export const ChartInfo = ({
 
   useEffect(() => {
     const formatPriceForDisplay = (price: number): string => {
-      const value: string = formateNumberDecimals(price, 0)
+      const value: string = formatNumberDecimals(price, 0)
 
       return currency.before
         ? `${currency.value}${value}`

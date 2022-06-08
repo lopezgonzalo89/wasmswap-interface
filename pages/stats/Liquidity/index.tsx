@@ -5,6 +5,7 @@ import { ButtonsGroup, ChartContainer, InfoContainer } from 'pages/stats'
 import { getLiquidityData } from 'queries/stats/getLiquidityData'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Currency, Data, Datas, Filter, Item } from 'types/charts.types'
+import { Range, Token } from 'util/format'
 import { getDataByRange } from 'util/getDataByRange'
 
 // This is used to import and render Chart Library in Client Side
@@ -21,7 +22,7 @@ export const Liquidity = (): JSX.Element => {
     time: null,
     value: null,
   })
-  const [range, setRange] = useState<string>('d')
+  const [range, setRange] = useState<string>(Range.day)
   const [token, setToken] = useState<string>('value')
   const [currency, setCurrency] = useState<Currency>({
     value: '$',
@@ -67,16 +68,16 @@ export const Liquidity = (): JSX.Element => {
       value: '$',
       before: true,
     }
-    if (idToken === 'value_source') {
+    if (idToken === Token.value_source) {
       currency = { value: 'SOURCE', before: false }
-    } else if (idToken === 'value_atom') {
+    } else if (idToken === Token.value_source) {
       currency = { value: 'ATOM', before: false }
     }
     setCurrency(currency)
   }
 
   useEffect(() => {
-    if (data) changeRange('d')
+    if (data) changeRange(Range.day)
   }, [changeRange, data])
 
   const liquidityFilters: Filter[] = [
@@ -84,17 +85,17 @@ export const Liquidity = (): JSX.Element => {
       id: 'token',
       values: [
         { id: 'value', label: 'USD' },
-        { id: 'value_atom', label: 'ATOM' },
-        { id: 'value_source', label: 'SOURCE' },
+        { id: Token.value_atom, label: 'ATOM' },
+        { id: Token.value_source, label: 'SOURCE' },
       ],
       callback: changeToken,
     },
     {
       id: 'range',
       values: [
-        { id: 'd', label: 'D' },
-        { id: 'w', label: 'W' },
-        { id: 'm', label: 'M' },
+        { id: Range.day, label: 'D' },
+        { id: Range.week, label: 'W' },
+        { id: Range.month, label: 'M' },
       ],
       callback: changeRange,
     },

@@ -7,7 +7,7 @@ import {
 import React, { LegacyRef, MutableRefObject, useEffect, useRef } from 'react'
 import { ResizeObserver } from 'resize-observer'
 import { ChartType } from 'types/charts.types'
-import { formatterNumber } from 'util/format'
+import { formatNumberUnit } from 'util/format'
 
 export const Chart = ({
   data,
@@ -53,7 +53,7 @@ export const Chart = ({
         },
         localization: {
           priceFormatter: (price) => {
-            return formatterNumber(price)
+            return formatNumberUnit(price)
           },
         },
         grid: {
