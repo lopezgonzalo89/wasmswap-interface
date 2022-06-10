@@ -81,7 +81,7 @@ export const formatNumberUnit = (num: number): string => {
   } else if (Math.abs(num) < 1_000_000_000) {
     return parseFloat((num / 1_000_000).toFixed(1)) + 'M' // convert to M for number from > 1 million
   } else {
-    return parseFloat((num / 1_000_000_000).toFixed(1)) + 'B' // convert to M for number from > 1 billion
+    return parseFloat((num / 1_000_000_000).toFixed(1)).toString()
   }
 }
 
