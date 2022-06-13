@@ -68,9 +68,9 @@ export const Liquidity = (): JSX.Element => {
       value: '$',
       before: true,
     }
-    if (idToken === Token.value_source) {
+    if (idToken === Token.source) {
       currency = { value: 'SOURCE', before: false }
-    } else if (idToken === Token.value_source) {
+    } else if (idToken === Token.atom) {
       currency = { value: 'ATOM', before: false }
     }
     setCurrency(currency)
@@ -85,8 +85,8 @@ export const Liquidity = (): JSX.Element => {
       id: 'token',
       values: [
         { id: 'value', label: 'USD' },
-        { id: Token.value_atom, label: 'ATOM' },
-        { id: Token.value_source, label: 'SOURCE' },
+        { id: Token.atom, label: 'ATOM' },
+        { id: Token.source, label: 'SOURCE' },
       ],
       callback: changeToken,
     },

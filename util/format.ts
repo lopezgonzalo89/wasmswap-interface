@@ -7,8 +7,8 @@ export enum Range {
 
 // FIXME: This Enum could be created from asset list
 export enum Token {
-  value_atom = 'value_atom',
-  value_source = 'value_source',
+  atom = 'value_atom',
+  source = 'value_source',
 }
 
 /* eslint-enable no-unused-vars */
