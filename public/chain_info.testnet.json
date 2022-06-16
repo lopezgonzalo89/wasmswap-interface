@@ -1,38 +1,38 @@
 {
-  "chainId": "uni-3",
-  "chainName": "Juno Uni Testnet",
-  "rpc": "https://rpc.uni.juno.deuslabs.fi:443/",
-  "rest": "https://lcd.uni.juno.deuslabs.fi:443/",
+  "chainId": "sourcechain-testnet",
+  "chainName": "Source Testnet",
+  "rpc": "https://testnet.sourceprotocol.io:26657/",
+  "rest": "https://testnet.sourceprotocol.io:1317/",
   "stakeCurrency": {
-    "coinDenom": "JUNOX",
-    "coinMinimalDenom": "ujunox",
+    "coinDenom": "SOURCE",
+    "coinMinimalDenom": "usource",
     "coinDecimals": 6
   },
   "bip44": {
     "coinType": 118
   },
   "bech32Config": {
-    "bech32PrefixAccAddr": "juno",
-    "bech32PrefixAccPub": "junopub",
-    "bech32PrefixValAddr": "junovaloper",
-    "bech32PrefixValPub": "junovaloperpub",
-    "bech32PrefixConsAddr": "junovalcons",
-    "bech32PrefixConsPub": "junovalconspub"
+    "bech32PrefixAccAddr": "source",
+    "bech32PrefixAccPub": "sourcepub",
+    "bech32PrefixValAddr": "sourcevaloper",
+    "bech32PrefixValPub": "sourcevaloperpub",
+    "bech32PrefixConsAddr": "sourcevalcons",
+    "bech32PrefixConsPub": "sourcevalconspub"
   },
   "currencies": [
     {
-      "coinDenom": "JUNOX",
-      "coinMinimalDenom": "ujunox",
+      "coinDenom": "SOURCE",
+      "coinMinimalDenom": "usource",
       "coinDecimals": 6,
-      "coinGeckoId": "juno-network"
+      "coinGeckoId": "source-network"
     }
   ],
   "feeCurrencies": [
     {
-      "coinDenom": "JUNOX",
-      "coinMinimalDenom": "ujunox",
+      "coinDenom": "SOURCE",
+      "coinMinimalDenom": "usource",
       "coinDecimals": 6,
-      "coinGeckoId": "juno-network"
+      "coinGeckoId": "source-network"
     }
   ],
   "coinType": 118,

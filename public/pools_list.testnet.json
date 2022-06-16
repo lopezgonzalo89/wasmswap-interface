@@ -1,46 +1,46 @@
 {
-  "name": "Pools list on testnet",
+  "name": "Source Token List",
   "logoURI": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/29231450/Poodle-Standard-Gray-On-White-Standing.jpg",
   "keywords": ["special tokens"],
   "tags": {
     "ProjectName": {
-      "name": "Project",
-      "description": "Tokens that are listed on Project"
+      "name": "Source",
+      "description": "Tokens that are listed on Source"
     }
   },
   "timestamp": "2021-06-12T00:00:00+00:00",
   "base_token": {
-    "id": "juno-network",
-    "chain_id": "lucina",
+    "id": "sourcechain",
+    "chain_id": "sourcechain-testnet",
     "token_address": "",
-    "symbol": "JUNOX",
-    "name": "Junox",
+    "symbol": "SOURCE",
+    "name": "Source",
     "decimals": 6,
     "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
     "tags": ["native"],
     "native": true,
-    "denom": "ujunox"
+    "denom": "usource"
   },
   "pools": [
     {
-      "pool_id": "JUNO-POOD",
+      "pool_id": "SOURCE-POOD",
       "pool_assets": [
         {
-          "id": "juno-network",
-          "chain_id": "lucina",
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
           "token_address": "",
-          "symbol": "JUNOX",
-          "name": "Junox",
+          "symbol": "SOURCE",
+          "name": "Source",
           "decimals": 6,
           "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
           "tags": ["native"],
           "native": true,
-          "denom": "ujunox"
+          "denom": "usource"
         },
         {
-          "id": "juno-network",
-          "chain_id": "lucina",
-          "token_address": "juno1hset4pny4h8xm4s4lek57msq7j4zwfqwjf7zxqjt4npxyv0lrgnsp8qy9j",
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "source1g3acw7aumaj3r348cqn4kazrehlmn822w9p46sqwztnke27h3lys4n40u4",
           "symbol": "POOD",
           "name": "Poodle",
           "decimals": 6,
@@ -50,29 +50,29 @@
           "denom": "upood"
         }
       ],
-      "swap_address": "juno18edfd7nquv9zfgprt5lpzcykczw0llwqcc40f5lkxq2vdw7nnp7qr7a22a",
-      "staking_address": "juno1zdl3fc327ss955s42d0x8yfs7eu3fmsp3rpga5ua8mvptpf3xn9qtr9jcx",
+      "swap_address": "source1qgl9p9x6c7n5mnp3987p4ex4ftvfskclkrc7k38qvdws8pn0n3ls4tvrmy",
+      "staking_address": "source1tq22yqsgl8y4ds930m0gha2yjkgju8rh8f2a0suv60vpwx8hqy2q9ykhu0",
       "rewards_tokens": []
     },
     {
-      "pool_id": "JUNO-CRAB",
+      "pool_id": "SOURCE-CRAB",
       "pool_assets": [
         {
-          "id": "juno-network",
-          "chain_id": "lucina",
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
           "token_address": "",
-          "symbol": "JUNOX",
-          "name": "Junox",
+          "symbol": "SOURCE",
+          "name": "Source",
           "decimals": 6,
           "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
           "tags": ["native"],
           "native": true,
-          "denom": "ujunox"
+          "denom": "usource"
         },
         {
-          "id": "juno-network",
-          "chain_id": "lucina",
-          "token_address": "juno1tjmxqppmerlt4xyusqrmd6k77fn3x4t3kw70jnuge0pswjevm2cs2jgl2v",
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "source1msyushf6d76u9wupuvm6jdvc0x4trmv5w5kxr0hyt7n9npp233usmlp5xd",
           "symbol": "CRAB",
           "name": "Crab",
           "decimals": 6,
@@ -82,52 +82,29 @@
           "denom": "ucrab"
         }
       ],
-      "swap_address": "juno1a7dm5x7e4mdysd4wrnyx9lr6udltuuv5mtz6rkc7c5gy3pv7z3tsd3fwdf",
-      "staking_address": "juno19wmsdhmn9wgckn64xfp0sl55ntgnzj3lly20e7wjk8z597meh3xsw2zeus",
-      "rewards_tokens": [
-        {
-          "rewards_address": "juno1h5wenexac38vguahkcpaejmznqa3k9apx2uvwfzqtvlms7q77atsnd4xcw",
-          "token_address": "",
-          "swap_address": "",
-          "symbol": "JUNOX",
-          "name": "Junox",
-          "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
-          "native": true,
-          "denom": "ujuno",
-          "decimals": 6
-        },
-        {
-          "rewards_address": "juno1q3ep8crvavzqmhghn3ujp29zmqsrvs4muzs97h7a867fr0pjns9snyqn7u",
-          "token_address": "juno1tjmxqppmerlt4xyusqrmd6k77fn3x4t3kw70jnuge0pswjevm2cs2jgl2v",
-          "swap_address": "juno1tjmxqppmerlt4xyusqrmd6k77fn3x4t3kw70jnuge0pswjevm2cs2jgl2v",
-          "symbol": "CRAB",
-          "name": "Crab",
-          "logoURI": "https://cryptologos.cc/logos/irisnet-iris-logo.svg?v=022",
-          "native": false,
-          "denom": "ucrab",
-          "decimals": 6
-        }
-      ]
+      "swap_address": "source1d97kh6x55eudfdd0wxkzunxuvhnze88te9m3f5zft59e5ygur8eqjn5wgk",
+      "staking_address": "source1q8s8d7ahlxp8w5k9ygrsukzzzj0k5ajs9ntxxaflc8j0r5y3t0wsg78z35",
+      "rewards_tokens": []
     },
     {
-      "pool_id": "JUNO-DAO",
+      "pool_id": "SOURCE-DAO",
       "pool_assets": [
         {
-          "id": "juno-network",
-          "chain_id": "lucina",
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
           "token_address": "",
-          "symbol": "JUNOX",
-          "name": "Junox",
+          "symbol": "SOURCE",
+          "name": "Source",
           "decimals": 6,
           "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
           "tags": ["native"],
           "native": true,
-          "denom": "ujunox"
+          "denom": "usource"
         },
         {
-          "id": "juno-network",
-          "chain_id": "lucina",
-          "token_address": "juno1n2ywvw078d5jdnn7yfcd0cl7qm4uhsnqy9amh2zwvw2pcgh2ce8sd8jap2",
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "source19wut8ssulwasjquxpspfeq097kwj2n86fk3vq0g9c8eml2rqtprqklzxq0",
           "symbol": "DAO",
           "name": "DAO",
           "decimals": 6,
@@ -137,8 +114,8 @@
           "denom": "udao"
         }
       ],
-      "swap_address": "juno1je796cdrvprd93dfa2m8ru433e0zfc9ygzle349hm5x6a3xatrkqy649e2",
-      "staking_address": "juno189wqvuj8amqsag8ehn3vmz6cq26c44ffeltvljkcxx9lsfsew8mq9y7z4h",
+      "swap_address": "source13lgy8g4l59rt9qw3vp0ranhsj0xyr6tntlhqclysqr6c7wxxsenqarsje0",
+      "staking_address": "source1h4qltxx7tcdye2kkwj8ksedad0xr3frdusrdga97wf3mjcpx6qwql5hx7k",
       "rewards_tokens": []
     }
   ],
