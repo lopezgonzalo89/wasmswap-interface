@@ -1,0 +1,127 @@
+{
+  "name": "Source Token List",
+  "logoURI": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/29231450/Poodle-Standard-Gray-On-White-Standing.jpg",
+  "keywords": ["special tokens"],
+  "tags": {
+    "ProjectName": {
+      "name": "Source",
+      "description": "Tokens that are listed on Source"
+    }
+  },
+  "timestamp": "2021-06-12T00:00:00+00:00",
+  "base_token": {
+    "id": "sourcechain",
+    "chain_id": "sourcechain-testnet",
+    "token_address": "",
+    "symbol": "SOURCE",
+    "name": "Source",
+    "decimals": 6,
+    "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
+    "tags": ["native"],
+    "native": true,
+    "denom": "usource"
+  },
+  "pools": [
+    {
+      "pool_id": "SOURCE-POOD",
+      "pool_assets": [
+        {
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "",
+          "symbol": "SOURCE",
+          "name": "Source",
+          "decimals": 6,
+          "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
+          "tags": ["native"],
+          "native": true,
+          "denom": "usource"
+        },
+        {
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "source1g3acw7aumaj3r348cqn4kazrehlmn822w9p46sqwztnke27h3lys4n40u4",
+          "symbol": "POOD",
+          "name": "Poodle",
+          "decimals": 6,
+          "logoURI": "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022",
+          "tags": ["memecoin"],
+          "native": false,
+          "denom": "upood"
+        }
+      ],
+      "swap_address": "source1qgl9p9x6c7n5mnp3987p4ex4ftvfskclkrc7k38qvdws8pn0n3ls4tvrmy",
+      "staking_address": "source1tq22yqsgl8y4ds930m0gha2yjkgju8rh8f2a0suv60vpwx8hqy2q9ykhu0",
+      "rewards_tokens": []
+    },
+    {
+      "pool_id": "SOURCE-CRAB",
+      "pool_assets": [
+        {
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "",
+          "symbol": "SOURCE",
+          "name": "Source",
+          "decimals": 6,
+          "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
+          "tags": ["native"],
+          "native": true,
+          "denom": "usource"
+        },
+        {
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "source1msyushf6d76u9wupuvm6jdvc0x4trmv5w5kxr0hyt7n9npp233usmlp5xd",
+          "symbol": "CRAB",
+          "name": "Crab",
+          "decimals": 6,
+          "logoURI": "https://cryptologos.cc/logos/irisnet-iris-logo.svg?v=022",
+          "tags": ["memecoin"],
+          "native": false,
+          "denom": "ucrab"
+        }
+      ],
+      "swap_address": "source1d97kh6x55eudfdd0wxkzunxuvhnze88te9m3f5zft59e5ygur8eqjn5wgk",
+      "staking_address": "source1q8s8d7ahlxp8w5k9ygrsukzzzj0k5ajs9ntxxaflc8j0r5y3t0wsg78z35",
+      "rewards_tokens": []
+    },
+    {
+      "pool_id": "SOURCE-DAO",
+      "pool_assets": [
+        {
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "",
+          "symbol": "SOURCE",
+          "name": "Source",
+          "decimals": 6,
+          "logoURI": "https://cryptologos.cc/logos/anyswap-any-logo.svg?v=022",
+          "tags": ["native"],
+          "native": true,
+          "denom": "usource"
+        },
+        {
+          "id": "sourcechain",
+          "chain_id": "sourcechain-testnet",
+          "token_address": "source19wut8ssulwasjquxpspfeq097kwj2n86fk3vq0g9c8eml2rqtprqklzxq0",
+          "symbol": "DAO",
+          "name": "DAO",
+          "decimals": 6,
+          "logoURI": "https://cryptologos.cc/logos/torn-torn-logo.svg?v=022",
+          "tags": ["memecoin"],
+          "native": false,
+          "denom": "udao"
+        }
+      ],
+      "swap_address": "source13lgy8g4l59rt9qw3vp0ranhsj0xyr6tntlhqclysqr6c7wxxsenqarsje0",
+      "staking_address": "source1h4qltxx7tcdye2kkwj8ksedad0xr3frdusrdga97wf3mjcpx6qwql5hx7k",
+      "rewards_tokens": []
+    }
+  ],
+  "version": {
+    "major": 0,
+    "minor": 1,
+    "patch": 0
+  }
+}
